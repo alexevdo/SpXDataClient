@@ -1,5 +1,10 @@
 package com.sano.spxdataclient.launch
 
+import android.content.Context
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
@@ -7,7 +12,6 @@ import android.widget.TextView
 import com.sano.spacexlaunches.R
 import com.sano.spxdataclient.model.Launch
 import com.sano.spxdataclient.utils.DateFormatManager
-import com.sano.spxdataclient.utils.getLaunchStateDrawable
 
 class LaunchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -24,5 +28,15 @@ class LaunchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         date.text = DateFormatManager.formatDate(launch.timestamp)
         status.setImageDrawable(getLaunchStateDrawable(itemView.context, launch))
     }
+
+    private fun getLaunchStateDrawable(context: Context, launch: Launch): Drawable =
+            if (launch.isUpcoming) ContextCompat.getDrawable(context, R.drawable.ic_arrow_up)!!
+            else {
+                ContextCompat.getDrawable(context, R.drawable.ic_circle)!!.mutate()
+                        .apply {
+                            if (launch.isSuccess) setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP)
+                            else setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP)
+                        }
+            }
 
 }
