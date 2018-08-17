@@ -10,11 +10,12 @@ import com.sano.spxdataclient.utils.DateFormatManager
 class LaunchAdapter: RecyclerView.Adapter<LaunchViewHolder>() {
 
     private val mData: MutableList<Launch> = ArrayList()
+    private var mOnClickListener: ((Int) -> Unit)? = null
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): LaunchViewHolder {
         val inflater = LayoutInflater.from(viewGroup.context)
         val view = inflater.inflate(R.layout.list_item_launch, viewGroup, false)
-        return LaunchViewHolder(view)
+        return LaunchViewHolder(view, mOnClickListener)
     }
 
     override fun getItemCount(): Int = mData.size
@@ -28,5 +29,13 @@ class LaunchAdapter: RecyclerView.Adapter<LaunchViewHolder>() {
         mData.clear()
         mData.addAll(sortedLaunches)
         notifyDataSetChanged()
+    }
+
+    fun setOnClickListener(listener: ((Int) -> Unit)?) {
+        mOnClickListener = listener
+    }
+
+    fun getItem(position: Int): Launch {
+        return mData[position]
     }
 }

@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import com.sano.spacexlaunches.R
 import com.sano.spxdataclient.api.ApiUtils
+import com.sano.spxdataclient.launchDetails.LaunchDetailsFragment
 import com.sano.spxdataclient.model.Launch
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,7 +18,7 @@ import org.jetbrains.anko.toast
 class LaunchesFragment : Fragment() {
 
     private lateinit var adapter: LaunchAdapter
-    private val composite: CompositeDisposable = CompositeDisposable()
+    private lateinit var composite: CompositeDisposable
     private var mMenuId: Int = R.id.action_all
 
     companion object {
@@ -30,6 +31,7 @@ class LaunchesFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        composite = CompositeDisposable()
         return inflater.inflate(R.layout.fragment_launches, container, false)
     }
 
@@ -39,6 +41,14 @@ class LaunchesFragment : Fragment() {
         setHasOptionsMenu(true)
 
         adapter = LaunchAdapter()
+        adapter.setOnClickListener {
+            fragmentManager
+                    ?.beginTransaction()
+                    ?.add(R.id.container, LaunchDetailsFragment.newInstance(adapter.getItem(it)))
+                    ?.addToBackStack(null)
+                    ?.commit()
+        }
+
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(context)
 

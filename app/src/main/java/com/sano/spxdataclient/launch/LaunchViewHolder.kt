@@ -13,7 +13,7 @@ import com.sano.spacexlaunches.R
 import com.sano.spxdataclient.model.Launch
 import com.sano.spxdataclient.utils.DateFormatManager
 
-class LaunchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class LaunchViewHolder(view: View, val listener: ((Int) -> Unit)?) : RecyclerView.ViewHolder(view) {
 
     private val logo: ImageView = itemView.findViewById(R.id.iv_logo)
     private val launchName: TextView = itemView.findViewById(R.id.tv_launch_name)
@@ -27,6 +27,7 @@ class LaunchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         rocketName.text = launch.rocket.rocketName
         date.text = DateFormatManager.formatDate(launch.timestamp)
         status.setImageDrawable(getLaunchStateDrawable(itemView.context, launch))
+        itemView.setOnClickListener { listener?.invoke(adapterPosition) }
     }
 
     private fun getLaunchStateDrawable(context: Context, launch: Launch): Drawable =

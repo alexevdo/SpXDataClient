@@ -7,4 +7,7 @@
     <string name="next">Next</string>
     <string name="past">Past</string>
     <string name="upcoming">Upcoming</string>
+    <string name="success">Success</string>
+    <string name="fail">Fail</string>
+    <string name="status_with_value">Status: %s</string>
 </resources>

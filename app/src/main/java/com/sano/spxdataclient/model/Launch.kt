@@ -1,8 +1,11 @@
 package com.sano.spxdataclient.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
+@Parcelize
 data class Launch(
         @SerializedName("flight_number") val int: Int,
         @SerializedName("mission_name") val missionName: String,
@@ -13,5 +16,4 @@ data class Launch(
         @SerializedName("upcoming") val isUpcoming: Boolean,
         @SerializedName("rocket") val rocket: Rocket,
         @SerializedName("telemetry") val telemetry: LaunchTelemetry,
-        @SerializedName("links") val links: LaunchLinks
-)
+        @SerializedName("links") val links: LaunchLinks) : Parcelable
