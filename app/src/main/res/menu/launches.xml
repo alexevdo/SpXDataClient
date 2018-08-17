@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="@string/latest"
+        android:id="@+id/action_latest"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:title="@string/next"
+        android:id="@+id/action_next"
+        app:showAsAction="never"/>
+
+    <item
+        android:title="@string/past"
+        android:id="@+id/action_past"
+        app:showAsAction="never"/>
+
+    <item
+        android:title="@string/upcoming"
+        android:id="@+id/action_upcoming"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_all"
+        android:title="@string/all"
+        app:showAsAction="never" />
+</menu>

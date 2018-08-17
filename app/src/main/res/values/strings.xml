@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SpX Data Client</string>
+    <string name="launch_logo_dsc">Launch logo</string>
+    <string name="launch_status_dsc">Launch status</string>
+    <string name="all">All</string>
+    <string name="latest">Latest</string>
+    <string name="next">Next</string>
+    <string name="past">Past</string>
+    <string name="upcoming">Upcoming</string>
+</resources>
