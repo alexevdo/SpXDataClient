@@ -14,9 +14,9 @@ class LinkViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val mLogo: ImageView = itemView.findViewById(R.id.iv_logo)
     private val mText: TextView = itemView.findViewById(R.id.tv_link)
 
-    fun bind(pair: Pair<@LinkType Int, String>) {
-        mLogo.setImageResource(getLinkImageRes(pair.first))
-        mText.text = pair.second
+    fun bind(link: LaunchLink) {
+        mLogo.setImageResource(getLinkImageRes(link.type))
+        mText.text = link.url
     }
 
     @DrawableRes

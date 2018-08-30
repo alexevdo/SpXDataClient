@@ -4,11 +4,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.sano.spacexlaunches.R
+import com.sano.spxdataclient.model.LaunchLink
 import com.sano.spxdataclient.model.LinkType
 
 class LinkAdapter: RecyclerView.Adapter<LinkViewHolder>() {
 
-    private val mData: MutableList<Pair<@LinkType Int, String>> = ArrayList()
+    private val mData: MutableList<LaunchLink> = ArrayList()
 
     override fun onCreateViewHolder(container: ViewGroup, type: Int): LinkViewHolder {
         val view = LayoutInflater.from(container.context)
@@ -23,7 +24,7 @@ class LinkAdapter: RecyclerView.Adapter<LinkViewHolder>() {
         viewHolder.bind(mData[position])
     }
 
-    fun setData(links: List<Pair<@LinkType Int, String>>) {
+    fun setData(links: List<LaunchLink>) {
         mData.clear()
         mData.addAll(links)
         notifyDataSetChanged()
