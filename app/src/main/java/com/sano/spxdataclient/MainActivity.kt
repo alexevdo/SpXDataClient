@@ -1,12 +1,11 @@
 package com.sano.spxdataclient
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.sano.spacexlaunches.R
 import com.sano.spxdataclient.launch.LaunchesFragment
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity(), Storage.StorageOwner {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,4 +22,6 @@ class MainActivity : AppCompatActivity() {
         if(supportFragmentManager.backStackEntryCount == 1) finish()
         super.onBackPressed()
     }
+
+    override fun obtainStorage()= (application as SpxApp).mStorage
 }

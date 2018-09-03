@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("launches/latest")
-    fun getLatestLaunches(): Single<Launch>
+    fun getLatestLaunch(): Single<Launch>
 
     @GET("launches/next")
     fun getNextLaunch(): Single<Launch>

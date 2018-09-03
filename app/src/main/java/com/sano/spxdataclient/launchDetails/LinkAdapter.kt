@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.sano.spacexlaunches.R
 import com.sano.spxdataclient.model.LaunchLink
-import com.sano.spxdataclient.model.LinkType
 
 class LinkAdapter: RecyclerView.Adapter<LinkViewHolder>() {
 

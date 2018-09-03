@@ -63,6 +63,7 @@ class LaunchDetailsFragment : Fragment() {
     override fun onPrepareOptionsMenu(menu: Menu) = menu.clear()
 
     private fun getLaunchStatus(launch: Launch): String {
+        //TODO Replace with when
         val statusId =
                 if (launch.isUpcoming) R.string.upcoming
                 else {

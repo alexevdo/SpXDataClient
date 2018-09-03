@@ -1,14 +1,12 @@
 package com.sano.spxdataclient.launchDetails
 
 import android.support.annotation.DrawableRes
-import android.support.annotation.IdRes
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.sano.spacexlaunches.R
 import com.sano.spxdataclient.model.*
-import kotlinx.android.synthetic.main.list_item_launch.view.*
 
 class LinkViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val mLogo: ImageView = itemView.findViewById(R.id.iv_logo)

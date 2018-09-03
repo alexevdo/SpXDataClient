@@ -5,8 +5,18 @@ import com.sano.spacexlaunches.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.ConnectException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
+import java.util.*
 
 object ApiUtils {
+
+    val NETWORK_EXCEPTIONS = Arrays.asList(
+            UnknownHostException::class,
+            SocketTimeoutException::class,
+            ConnectException::class
+    )
 
     private val retrofit: Retrofit
 
