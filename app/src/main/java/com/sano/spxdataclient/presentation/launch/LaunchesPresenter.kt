@@ -1,5 +1,7 @@
 package com.sano.spxdataclient.presentation.launch
 
+import com.arellomobile.mvp.InjectViewState
+import com.arellomobile.mvp.MvpPresenter
 import com.sano.spacexlaunches.R
 import com.sano.spxdataclient.Storage
 import com.sano.spxdataclient.api.ApiUtils
@@ -9,7 +11,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class LaunchesPresenter(private val mView: LaunchesView, private val mStorage: Storage) {
+@InjectViewState
+class LaunchesPresenter(private val mStorage: Storage): MvpPresenter<LaunchesView>() {
 
     private var mComposite = CompositeDisposable()
 
@@ -19,7 +22,13 @@ class LaunchesPresenter(private val mView: LaunchesView, private val mStorage: S
             loadLaunches()
         }
 
-    fun onListItemClicked(launch: Launch) = mView.showLaunchDetailsScreen(launch)
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+
+        loadLaunches()
+    }
+
+    fun onListItemClicked(launch: Launch) = viewState.showLaunchDetailsScreen(launch)
 
     fun loadLaunches() {
         when (menuId) {
@@ -87,18 +96,18 @@ class LaunchesPresenter(private val mView: LaunchesView, private val mStorage: S
                 .deliverResult()
     }
 
-    fun onDestroy() {
+    fun onDestroyDelegate() {
         mComposite.clear()
     }
 
     private fun Single<List<Launch>>.deliverResult() {
         observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { mView.isShowProgress = true }
-                .doFinally { mView.isShowProgress = false }
+                .doOnSubscribe { viewState.showProgress() }
+                .doFinally { viewState.hideProgress() }
                 .subscribe({
-                    mView.setData(it)
+                    viewState.setData(it)
                 }, {
-                    mView.showError(it.message.toString())
+                    viewState.showError(it.message.toString())
                 })
                 .apply { mComposite.add(this) }
     }
