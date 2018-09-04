@@ -1,6 +1,7 @@
 package com.sano.spxdataclient.presentation.launchDetails
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -35,11 +36,7 @@ class LaunchDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (arguments == null || arguments?.getParcelable<Launch>(LAUNCH_EXTRA_KEY) == null) {
-            throw IllegalArgumentException("Provide LAUNCH_EXTRA_KEY")
-        }
-
-        mLaunch = arguments!!.getParcelable(LAUNCH_EXTRA_KEY)!!
+        mLaunch = arguments.getParcelableOrThrow(LAUNCH_EXTRA_KEY)
 
         iv_logo.setImageResource(R.drawable.spacex_logo)
         tv_launch_name.text = mLaunch.missionName
@@ -70,5 +67,13 @@ class LaunchDetailsFragment : Fragment() {
         }
 
         return getString(R.string.status_with_value, getString(statusId))
+    }
+
+    private fun <T : Parcelable> Bundle?.getParcelableOrThrow(key: String): T {
+        if (this == null || getParcelable<T>(key) == null) {
+            throw IllegalArgumentException("Provide $key extra")
+        }
+
+        return getParcelable(key)!!
     }
 }

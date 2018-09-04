@@ -13,7 +13,6 @@ import com.sano.spxdataclient.presentation.launchDetails.LaunchDetailsFragment
 import kotlinx.android.synthetic.main.fragment_launches.*
 import org.jetbrains.anko.toast
 
-
 class LaunchesFragment : MvpAppCompatFragment(), LaunchesView {
 
     companion object {

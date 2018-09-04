@@ -9,7 +9,7 @@ import com.sano.spxdataclient.utils.DateFormatManager
 
 class LaunchAdapter: RecyclerView.Adapter<LaunchViewHolder>() {
 
-    private val mData: MutableList<Launch> = ArrayList()
+    private val mData: MutableList<Launch> = mutableListOf()
     private var mOnClickListener: ((Int) -> Unit)? = null
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): LaunchViewHolder {

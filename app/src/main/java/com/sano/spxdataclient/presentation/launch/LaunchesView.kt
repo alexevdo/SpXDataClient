@@ -8,8 +8,7 @@ import com.sano.spxdataclient.model.Launch
 interface LaunchesView: MvpView {
     fun setData(launches: List<Launch>)
     fun showError(message: String)
-    @StateStrategyType(SkipStrategy::class)
-    fun showLaunchDetailsScreen(launch: Launch)
+    @StateStrategyType(SkipStrategy::class) fun showLaunchDetailsScreen(launch: Launch)
     fun showProgress()
     fun hideProgress()
 }
