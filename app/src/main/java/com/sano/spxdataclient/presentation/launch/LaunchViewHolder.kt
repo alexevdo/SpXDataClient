@@ -1,4 +1,4 @@
-package com.sano.spxdataclient.launch
+package com.sano.spxdataclient.presentation.launch
 
 import android.content.Context
 import android.graphics.Color

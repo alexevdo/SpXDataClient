@@ -1,4 +1,4 @@
-package com.sano.spxdataclient.launchDetails
+package com.sano.spxdataclient.presentation.launchDetails
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -63,13 +63,11 @@ class LaunchDetailsFragment : Fragment() {
     override fun onPrepareOptionsMenu(menu: Menu) = menu.clear()
 
     private fun getLaunchStatus(launch: Launch): String {
-        //TODO Replace with when
-        val statusId =
-                if (launch.isUpcoming) R.string.upcoming
-                else {
-                    if (launch.isSuccess) R.string.success
-                    else R.string.fail
-                }
+        val statusId = when {
+            launch.isUpcoming -> R.string.upcoming
+            launch.isSuccess -> R.string.success
+            else -> R.string.fail
+        }
 
         return getString(R.string.status_with_value, getString(statusId))
     }

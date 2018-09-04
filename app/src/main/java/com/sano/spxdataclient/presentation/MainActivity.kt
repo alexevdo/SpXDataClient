@@ -1,9 +1,11 @@
-package com.sano.spxdataclient
+package com.sano.spxdataclient.presentation
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.sano.spacexlaunches.R
-import com.sano.spxdataclient.launch.LaunchesFragment
+import com.sano.spxdataclient.SpxApp
+import com.sano.spxdataclient.Storage
+import com.sano.spxdataclient.presentation.launch.LaunchesFragment
 
 class MainActivity : AppCompatActivity(), Storage.StorageOwner {
     override fun onCreate(savedInstanceState: Bundle?) {

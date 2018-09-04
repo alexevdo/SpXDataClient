@@ -1,4 +1,4 @@
-package com.sano.spxdataclient.launch
+package com.sano.spxdataclient.presentation.launch
 
 import android.content.Context
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.*
 import com.sano.spacexlaunches.R
 import com.sano.spxdataclient.Storage
 import com.sano.spxdataclient.api.ApiUtils
-import com.sano.spxdataclient.launchDetails.LaunchDetailsFragment
+import com.sano.spxdataclient.presentation.launchDetails.LaunchDetailsFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

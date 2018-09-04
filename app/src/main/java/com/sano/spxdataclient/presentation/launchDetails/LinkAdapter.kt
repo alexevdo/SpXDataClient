@@ -1,4 +1,4 @@
-package com.sano.spxdataclient.launchDetails
+package com.sano.spxdataclient.presentation.launchDetails
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
