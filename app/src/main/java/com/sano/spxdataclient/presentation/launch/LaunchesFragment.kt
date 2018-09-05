@@ -29,7 +29,7 @@ class LaunchesFragment : MvpAppCompatFragment(), LaunchesView {
         if (context is Storage.StorageOwner) {
             return LaunchesPresenter((context as Storage.StorageOwner).obtainStorage())
         } else {
-            throw IllegalStateException("Activity must be Storage.StorageOwner child")
+            throw IllegalStateException("Activity must implements Storage.StorageOwner")
         }
     }
 
@@ -59,7 +59,14 @@ class LaunchesFragment : MvpAppCompatFragment(), LaunchesView {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        mPresenter.menuId = item.itemId
+        mPresenter.menuId = when(item.itemId) {
+            R.id.action_latest -> LATEST_LAUNCH
+            R.id.action_next -> NEXT_LAUNCH
+            R.id.action_past -> PAST_LAUNCHES
+            R.id.action_upcoming -> UPCOMING_LAUNCHES
+            else -> ALL_LAUNCHES
+        }
+
         return true
     }
 

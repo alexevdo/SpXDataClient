@@ -1,8 +1,8 @@
 package com.sano.spxdataclient.presentation.launch
 
+import android.support.annotation.IntDef
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.sano.spacexlaunches.R
 import com.sano.spxdataclient.Storage
 import com.sano.spxdataclient.api.ApiUtils
 import com.sano.spxdataclient.model.Launch
@@ -11,12 +11,24 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
+const val LATEST_LAUNCH = 0
+const val NEXT_LAUNCH = 1
+const val PAST_LAUNCHES = 2
+const val UPCOMING_LAUNCHES = 3
+const val ALL_LAUNCHES = 4
+
+@Target(AnnotationTarget.PROPERTY)
+@Retention(AnnotationRetention.SOURCE)
+@IntDef(LATEST_LAUNCH, NEXT_LAUNCH, PAST_LAUNCHES, UPCOMING_LAUNCHES, ALL_LAUNCHES)
+annotation class LaunchType
+
 @InjectViewState
-class LaunchesPresenter(private val mStorage: Storage): MvpPresenter<LaunchesView>() {
+class LaunchesPresenter(private val mStorage: Storage) : MvpPresenter<LaunchesView>() {
 
     private var mComposite = CompositeDisposable()
 
-    var menuId: Int = R.id.action_all
+    @LaunchType
+    var menuId: Int = ALL_LAUNCHES
         set(value) {
             field = value
             loadLaunches()
@@ -30,14 +42,12 @@ class LaunchesPresenter(private val mStorage: Storage): MvpPresenter<LaunchesVie
 
     fun onListItemClicked(launch: Launch) = viewState.showLaunchDetailsScreen(launch)
 
-    fun loadLaunches() {
-        when (menuId) {
-            R.id.action_latest -> loadLatestLaunch()
-            R.id.action_next -> loadNextLaunch()
-            R.id.action_past -> loadPastLaunches()
-            R.id.action_upcoming -> loadUpcomingLaunches()
-            R.id.action_all -> loadAllLaunches()
-        }
+    fun loadLaunches() = when (menuId) {
+        LATEST_LAUNCH -> loadLatestLaunch()
+        NEXT_LAUNCH -> loadNextLaunch()
+        PAST_LAUNCHES -> loadPastLaunches()
+        UPCOMING_LAUNCHES -> loadUpcomingLaunches()
+        else -> loadAllLaunches()
     }
 
     private fun loadLatestLaunch() {

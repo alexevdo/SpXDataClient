@@ -2,7 +2,6 @@ package com.sano.spxdataclient.model
 
 import android.support.annotation.IntDef
 
-
 const val REDDIT = 0
 const val PDF = 1
 const val LINK = 2
