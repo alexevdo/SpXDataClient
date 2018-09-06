@@ -9,6 +9,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.sano.spacexlaunches.R
 import com.sano.spxdataclient.Storage
 import com.sano.spxdataclient.model.Launch
+import com.sano.spxdataclient.presentation.guide.GuideFragment
 import com.sano.spxdataclient.presentation.launchDetails.LaunchDetailsFragment
 import kotlinx.android.synthetic.main.fragment_launches.*
 import org.jetbrains.anko.toast
@@ -59,6 +60,16 @@ class LaunchesFragment : MvpAppCompatFragment(), LaunchesView {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.action_guide) {
+            fragmentManager
+                    ?.beginTransaction()
+                    ?.add(R.id.container, GuideFragment.newInstance())
+                    ?.addToBackStack(null)
+                    ?.commit()
+
+            return true
+        }
+
         mPresenter.menuId = when(item.itemId) {
             R.id.action_latest -> LATEST_LAUNCH
             R.id.action_next -> NEXT_LAUNCH

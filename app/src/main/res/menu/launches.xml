@@ -27,4 +27,9 @@
         android:id="@+id/action_all"
         android:title="@string/all"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_guide"
+        android:title="@string/guide"
+        app:showAsAction="ifRoom" />
 </menu>

@@ -10,4 +10,14 @@
     <string name="success">Success</string>
     <string name="fail">Fail</string>
     <string name="status_with_value">Status: %s</string>
+
+    <!--Guide-->
+    <string name="guide_title_1">Choose</string>
+    <string name="guide_title_2">Select</string>
+    <string name="guide_title_3">Review</string>
+    <string name="guide_description_1">Lorem 1 ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="guide_description_2">Lorem 2 ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="guide_description_3">Lorem 3 ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="got_it">Got it</string>
+    <string name="guide">Guide demo</string>
 </resources>
