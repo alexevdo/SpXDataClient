@@ -121,4 +121,8 @@ class LaunchesPresenter(private val mStorage: Storage) : MvpPresenter<LaunchesVi
                 })
                 .apply { mComposite.add(this) }
     }
+
+    fun onActionGuideClick() {
+        viewState.showGuideScreen()
+    }
 }

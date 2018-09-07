@@ -61,12 +61,7 @@ class LaunchesFragment : MvpAppCompatFragment(), LaunchesView {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.action_guide) {
-            fragmentManager
-                    ?.beginTransaction()
-                    ?.add(R.id.container, GuideFragment.newInstance())
-                    ?.addToBackStack(null)
-                    ?.commit()
-
+            mPresenter.onActionGuideClick()
             return true
         }
 
@@ -96,6 +91,14 @@ class LaunchesFragment : MvpAppCompatFragment(), LaunchesView {
         fragmentManager
                 ?.beginTransaction()
                 ?.add(R.id.container, LaunchDetailsFragment.newInstance(launch))
+                ?.addToBackStack(null)
+                ?.commit()
+    }
+
+    override fun showGuideScreen() {
+        fragmentManager
+                ?.beginTransaction()
+                ?.add(R.id.container, GuideFragment.newInstance())
                 ?.addToBackStack(null)
                 ?.commit()
     }

@@ -11,4 +11,5 @@ interface LaunchesView: MvpView {
     @StateStrategyType(SkipStrategy::class) fun showLaunchDetailsScreen(launch: Launch)
     fun showProgress()
     fun hideProgress()
+    @StateStrategyType(SkipStrategy::class) fun showGuideScreen()
 }
